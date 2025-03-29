@@ -1,0 +1,40 @@
+@import "color"
+@import "mixin"
+@import "fonts"
+
+$radius: 10px
+
+*
+  padding: 0
+  margin: 0
+  border: none
+  list-style-type: none
+  box-sizing: border-box
+  font-family: 'Source-Sans-3' , sans-serif
+
+.btn
+  background: $red
+  color: $white
+  padding: 10px
+  border-radius: $radius
+  @include transition
+  
+
+@include hover
+  .btn:hover
+    background: $white
+    color: $black 
+
+.nuxt-icon
+  margin: 0 !important
+  transition: all 0.35s
+
+.nuxt-link
+  text-decoration: none
+
+.white
+  color: $white
+
+
+
+        
