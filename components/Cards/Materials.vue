@@ -25,7 +25,6 @@ const props = defineProps(['url', 'img', 'title', 'text']);
     flex-direction: row
     align-items: center
     justify-content: center
-    max-width: 835px
     gap: 40px
 
     &--centered-img

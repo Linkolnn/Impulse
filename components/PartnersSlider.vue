@@ -13,6 +13,7 @@ const onSwiper = (instance) => {
 const props = defineProps(['cards']); 
 
 </script>
+
 <template>
   <div class="partners__swiper-slider">
     <Swiper class="partners__slider"
@@ -22,12 +23,19 @@ const props = defineProps(['cards']);
                 disableOnInteraction: false,     
             }"
             :modules="modules"
-            slides-per-view="auto"
+            :slides-per-view="'auto'"
+            :centeredSlides="true"
             :breakpoints="{
+                '859': {
+                    spaceBetween: 16,
+                    centeredSlides: false
+                },
                 '1919': {spaceBetween: 20},
                 '1364': {spaceBetween: 18},
-                '859': {spaceBetween: 16},
-                '365': {spaceBetween: 14},
+                '365': {
+                    spaceBetween: 14,
+                    centeredSlides: true
+                },
             }">
       <SwiperSlide class="partners__slider-item" v-for="(card, index) in cards" :key="index">
         <CardsPartners
@@ -38,6 +46,7 @@ const props = defineProps(['cards']);
     </Swiper>
   </div>
 </template>
+
 <style lang="sass">
 @import "@color"
 @import "@mixin"
@@ -50,12 +59,18 @@ const props = defineProps(['cards']);
   width: 100%
 
 .partners__slider-item
-    width: max-content
-    height: max-content
-    cursor: pointer
+  width: max-content
+  height: max-content
+  cursor: pointer
+  display: flex
+  justify-content: center 
 
 .partners__slider-item-logo
   object-fit: contain
   height: 100%
   width: 100%
+
+@include mobile  
+  .partners__slider-item
+    width: 214px 
 </style>
