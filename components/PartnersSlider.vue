@@ -3,6 +3,7 @@ import {Swiper, SwiperSlide} from 'swiper/vue';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
+const props = defineProps(['cards']); 
 const swiper = ref(null);
 const modules = [Autoplay];
 
@@ -10,10 +11,22 @@ const onSwiper = (instance) => {
   swiper.value = instance;
 };
 
-const props = defineProps(['cards']); 
+const breakpoints = {
+    '1919': { 
+
+        spaceBetween: 40 
+    },
+    '1364': { 
+
+        spaceBetween: 30 
+    },
+    '859': { 
+        slidesPerView: 'auto',
+        spaceBetween: 30 
+    },
+};
 
 </script>
-
 <template>
   <div class="partners__swiper-slider">
     <Swiper class="partners__slider"
@@ -25,18 +38,7 @@ const props = defineProps(['cards']);
             :modules="modules"
             :slides-per-view="'auto'"
             :centeredSlides="true"
-            :breakpoints="{
-                '859': {
-                    spaceBetween: 16,
-                    centeredSlides: false
-                },
-                '1919': {spaceBetween: 20},
-                '1364': {spaceBetween: 18},
-                '365': {
-                    spaceBetween: 14,
-                    centeredSlides: true
-                },
-            }">
+            :breakpoints="breakpoints">
       <SwiperSlide class="partners__slider-item" v-for="(card, index) in cards" :key="index">
         <CardsPartners
             :url="card.url"
@@ -46,7 +48,6 @@ const props = defineProps(['cards']);
     </Swiper>
   </div>
 </template>
-
 <style lang="sass">
 @import "@color"
 @import "@mixin"
@@ -72,5 +73,6 @@ const props = defineProps(['cards']);
 
 @include mobile  
   .partners__slider-item
-    width: 214px 
+    width: 214px
+    padding: 0px 5px 
 </style>

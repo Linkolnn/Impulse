@@ -162,7 +162,7 @@ onMounted(() => {
 
 @include tablet 
     .review-slider__items
-        width: 100%
+        width: 100% !important
 
 @include mobile
     .review-slider__items
