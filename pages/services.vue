@@ -19,7 +19,7 @@ import { ServicesTableData, ServicesLinkData } from '@services/data';
     <section class="services-link__section section">
         <h2 class="services-link__title font-h2 title">Социальные услуги, предоставляемые в Учреждении</h2>
         <div class="services-link__block">
-            <ServicesLink
+            <MainLink
                 v-for="item in ServicesLinkData" 
                 :main="item"
             />

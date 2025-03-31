@@ -6,7 +6,7 @@ const props = defineProps(['url', 'title', 'type']);
     <NuxtLink :to="url" class="services-card" :class="type">
         <IconServicesNews filled class="services-card__icon services-card__icon--news"/>
         <IconServicesQuiz filled class="services-card__icon services-card__icon--quiz"/>
-        <IconServicesWorksheet filled class="services-card__icon services-card__icon--worksheet"/>
+        <IconServicesWorksheet filled class="services-card__icon services-card__icon--services"/>
         <h3 class="font-h3 title-top">
             {{ title }}
         </h3>
@@ -43,7 +43,7 @@ const props = defineProps(['url', 'title', 'type']);
     &--quiz
         display: none
 
-    &--worksheet
+    &--services
         display: none
     
     &--news
@@ -55,9 +55,9 @@ const props = defineProps(['url', 'title', 'type']);
         &--quiz
             display: block
 
-.services-card.worksheet
+.services-card.services
     .services-card__icon
-        &--worksheet
+        &--services
             display: block
 
 .services-card.news
