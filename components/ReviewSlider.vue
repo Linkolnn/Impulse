@@ -1,5 +1,6 @@
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -10,6 +11,8 @@ const props = defineProps(['cards']);
 const 
     swiper = ref(null),
     isMobile = ref(false);
+
+const modules = [Autoplay, Navigation];
 
 const breakpoints = {
     '1919': { 
@@ -72,7 +75,11 @@ onMounted(() => {
         <Swiper
             class="review-slider"
             @swiper="onSwiper"
-            :modules="[Navigation]"
+            :autoplay="{ 
+                delay: 2500,       
+                disableOnInteraction: false,     
+            }"
+            :modules="modules"
             :slides-per-view="isMobile ? 'auto' : 3"
             :breakpoints="breakpoints"
         >
