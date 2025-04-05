@@ -76,7 +76,7 @@ onMounted(() => {
             class="review-slider"
             @swiper="onSwiper"
             :autoplay="{ 
-                delay: 2500,       
+                delay: 6500,       
                 disableOnInteraction: false,     
             }"
             :modules="modules"

@@ -10,7 +10,10 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "bvi": "^1.0.2",
     "gsap": "^3.12.7",
+    "jquery": "^3.7.1",
+    "js-cookie": "^3.0.5",
     "nuxt": "^3.16.1",
     "nuxt-svgo": "^4.0.16",
     "sass": "^1.86.0",

@@ -19,7 +19,7 @@ const data = {
             },
             {
                 url: '/university',
-                text: 'Университет тртьего возраста'
+                text: 'Университет третьего возраста'
             },
             {
                 url: '/inform',
@@ -372,7 +372,7 @@ export const PartnersCardsData = [
     },
     {
         url: "https://mfc.admhmao.ru/",
-        img: "https://mfc.admhmao.ru/bitrix/templates/rpgu-theme/content/main-page/brsk/img/logo.png?1",
+        img: "https://cop.admhmao.ru/assets/dist/logo.1a6f66ee.png",
     },
     {
         url: "https://sfr.gov.ru/",

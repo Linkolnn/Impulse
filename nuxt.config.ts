@@ -3,6 +3,7 @@ import { resolve } from "path";
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: false },
+  ssr: false,
   modules: ['nuxt-svgo'],
   alias: {
     '@components': resolve(__dirname, './components'),
@@ -18,7 +19,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Бюджетное учреждение Ханты-Мансийского автономного округа - Югры. "Урайский комплексный центр социального обслуживания населения"'
+      title: 'Бюджетное учреждение Ханты-Мансийского автономного округа - Югры. "Урайский комплексный центр социального обслуживания населения"',
     }
-  }
+  },
 })

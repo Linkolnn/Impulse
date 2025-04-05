@@ -1,6 +1,7 @@
 <script setup>
 import data from '@services/data';
 import { showMenu, hideMenu } from '../animation/animation';
+import * as isvek from "bvi";
 
 const navMenuItems = data.navMenuItems();
 const navMenuVisible = ref(false); 
@@ -28,6 +29,31 @@ const isActiveLink = (url) => {
     return route.path === url;
 };
 
+
+const loadSpecialVersion = async () => {
+    if (window.$ && window.UHPV) {
+      window.UHPV.init();
+      return;
+}
+
+await Promise.all([
+      loadScript('https://lidrekon.ru/slep/js/jquery.js'),
+      loadScript('https://lidrekon.ru/slep/js/uhpv-full.min.js')
+    ]);
+
+    window.UHPV.init();
+};
+
+const loadScript = (src) => {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.body.appendChild(script);
+  });
+};
+
 onMounted(() => {
     checkIsMobile(); 
 });
@@ -45,6 +71,17 @@ onMounted(() => {
             </li>
         </ul>
     </nav>
+    <button 
+        class="btn header_btn"
+        id="specialButton" 
+        style="cursor:pointer; justify-self: end" 
+        src="https://lidrekon.ru/images/special.png" 
+        alt="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ" 
+        title="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ"
+        @click="loadSpecialVersion"
+    >
+        ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ
+    </button>
     <button @click="toggleNavMenu" class="header_burger-btn">
         <IconBurger class="header_burger-icon" filled />
     </button>
@@ -78,6 +115,10 @@ onMounted(() => {
     &--active
         border-bottom: 4px solid $red    
 
+.header_btn
+    display: flex
+    justify-self: end
+
 .header_burger-btn
     display: none
 
@@ -95,7 +136,7 @@ onMounted(() => {
         background: $white
         transform: translateX(-100%)
         position: fixed
-        top: 85px
+        top: 128px
         left: 0
         width: 100%
         height: 100%

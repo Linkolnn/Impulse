@@ -51,4 +51,7 @@
     .header__content
         margin-bottom: 10px
 
+    .header__contact
+        font-size: 14px
+
 </style>

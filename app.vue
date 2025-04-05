@@ -14,6 +14,9 @@
 .container
   padding: 0px 20px 
 
+p, strong, h2
+  word-break: break-all
+
 .section
   min-height: 80vh
   padding: 40px
