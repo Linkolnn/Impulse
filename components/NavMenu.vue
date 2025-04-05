@@ -116,6 +116,7 @@ onMounted(() => {
         border-bottom: 4px solid $red    
 
 .header_btn
+    margin-top: 10px
     display: flex
     justify-self: end
 
