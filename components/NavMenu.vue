@@ -1,61 +1,68 @@
 <script setup>
 import data from '@services/data';
 import { showMenu, hideMenu } from '../animation/animation';
-import * as isvek from "bvi";
+import jQuery from 'jquery';
 
 const navMenuItems = data.navMenuItems();
-const navMenuVisible = ref(false); 
+const navMenuVisible = ref(false);
 const navMenu = ref(null);
 const isMobile = ref(false);
 const route = useRoute();
+let isSpecialLoaded = false; 
 
 const toggleNavMenu = () => {
-    if (!isMobile.value || !navMenu.value) return;
-    navMenuVisible.value = !navMenuVisible.value;
-    if (navMenuVisible.value) {
-        showMenu(navMenu.value);
-        document.body.style.overflow = 'hidden';
-    } else {
-        hideMenu(navMenu.value);
-        document.body.style.overflow = 'auto';
-    }
+  if (!isMobile.value || !navMenu.value) return;
+  navMenuVisible.value = !navMenuVisible.value;
+  if (navMenuVisible.value) {
+    showMenu(navMenu.value);
+    document.body.style.overflow = 'hidden';
+  } else {
+    hideMenu(navMenu.value);
+    document.body.style.overflow = 'auto';
+  }
 };
 
 const checkIsMobile = () => {
-    isMobile.value = window.innerWidth <= 859;
+  isMobile.value = window.innerWidth <= 859;
 };
 
 const isActiveLink = (url) => {
-    return route.path === url;
-};
-
-
-const loadSpecialVersion = async () => {
-    if (window.$ && window.UHPV) {
-      window.UHPV.init();
-      return;
-}
-
-await Promise.all([
-      loadScript('https://lidrekon.ru/slep/js/jquery.js'),
-      loadScript('https://lidrekon.ru/slep/js/uhpv-full.min.js')
-    ]);
-
-    window.UHPV.init();
+  return route.path === url;
 };
 
 const loadScript = (src) => {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = src;
+    script.async = true;
     script.onload = resolve;
     script.onerror = reject;
     document.body.appendChild(script);
   });
 };
 
+// Переключение версии для слабовидящих
+const toggleSpecialVersion = async () => {
+  if (!window.jQuery) {
+    window.jQuery = window.$ = jQuery;
+  }
+  if (!isSpecialLoaded) {
+    try {
+      await loadScript('https://lidrekon.ru/slep/js/uhpv-full.min.js');
+      isSpecialLoaded = true;
+    } catch (error) {
+    }
+  }
+
+  if (window.UHPV && window.UHPV.init) {
+    window.UHPV.init();
+  } else {
+    window.jQuery('#specialButton').trigger('click');
+  }
+};
+
 onMounted(() => {
-    checkIsMobile(); 
+  checkIsMobile();
 });
 </script>
 <template>
@@ -78,7 +85,7 @@ onMounted(() => {
         src="https://lidrekon.ru/images/special.png" 
         alt="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ" 
         title="ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ"
-        @click="loadSpecialVersion"
+        @click="toggleSpecialVersion"
     >
         ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ
     </button>
