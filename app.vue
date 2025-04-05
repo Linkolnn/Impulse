@@ -1,5 +1,11 @@
+<script setup>
+new isvek.Bvi({
+  target: '.bvi-open'
+})
+</script>
 <template>
   <Header/>
+  <a href="#" class="bvi-open">Версия для слабовидящих</a>
   <main class="main container">
     <NuxtPage/>
   </main>
